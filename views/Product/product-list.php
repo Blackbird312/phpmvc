@@ -18,6 +18,7 @@
                     <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Qunatity</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -31,8 +32,9 @@
                                 <span>No Image</span>
                             <?php endif; ?>
                         </td>
-                        <td><?php echo htmlspecialchars($product['name']); ?></td>
+                        <td><?php echo htmlspecialchars($product['name']); ?></td>  
                         <td><?php echo htmlspecialchars($product['price']); ?> MAD</td>
+                        <td><?php echo htmlspecialchars($product['quantity']); ?></td>
                         <td>
                             <a href="/php-mvc/routes.php?action=edit&id=<?php echo $product['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
                             <a href="/php-mvc/routes.php?action=delete&id=<?php echo $product['id']; ?>" class="btn btn-danger btn-sm">Delete</a>

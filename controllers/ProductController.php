@@ -27,9 +27,9 @@ class ProductController
         require 'views/Product/create.php';
     }
 
-    public function store($name, $price)
+    public function store($name, $price, $quantity)
     {
-        $this->productModel->create($name, $price);
+        $this->productModel->create($name, $price, $quantity);
         header('Location: /php-mvc/routes.php');
     }
 
@@ -39,9 +39,9 @@ class ProductController
         require 'views/Product/edit.php';
     }
 
-    public function update($id, $name, $price)
+    public function update($id, $name, $price, $quantity)
     {
-        $this->productModel->update($id, $name, $price);
+        $this->productModel->update($id, $name, $price, $quantity);
         header('Location: /php-mvc/routes.php');
     }
 

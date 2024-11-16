@@ -32,15 +32,15 @@ class Product
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($name, $price)
+    public function create($name, $price, $quantity)
     {
         try {
             $imageName = $this->uploadHelper->upload($_FILES['image']);
-
-            $query = "INSERT INTO " . $this->table . " (name, price, image) VALUES (:name, :price, :image)";
+            $query = "INSERT INTO " . $this->table . " (name, price, quantity, image) VALUES (:name, :price, :quantity, :image)";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':name', $name);
             $stmt->bindParam(':price', $price);
+            $stmt->bindParam(':quantity', $quantity);
             $stmt->bindParam(':image', $imageName);
             return $stmt->execute();
         } catch (Exception $e) {
@@ -49,13 +49,14 @@ class Product
         }
     }
 
-    public function update($id, $name, $price)
+    public function update($id, $name, $price, $quantity)
     {
-        $query = "UPDATE " . $this->table . " SET name = :name, price = :price";
+        $query = "UPDATE " . $this->table . " SET name = :name, price = :price, quantity = :quantity";
         $params = [
             ':id' => $id,
             ':name' => $name,
-            ':price' => $price
+            ':price' => $price,
+            ':quantity' => $quantity
         ];
 
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {

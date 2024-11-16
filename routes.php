@@ -16,13 +16,13 @@ switch ($action) {
         $controller->create();
         break;
     case 'store':
-        $controller->store($_POST['name'], $_POST['price']);
+        $controller->store($_POST['name'], $_POST['price'], $_POST['quantity']);
         break;
     case 'edit':
         $controller->edit($_GET['id']);
         break;
     case 'update':
-        $controller->update($_GET['id'], $_POST['name'], $_POST['price']);
+        $controller->update($_GET['id'], $_POST['name'], $_POST['price'], $_POST['quantity']);
         break;
     case 'delete':
         $controller->delete($_GET['id']);

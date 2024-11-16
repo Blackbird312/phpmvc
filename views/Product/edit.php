@@ -21,6 +21,10 @@
                 <input type="text" id="price" name="price" value="<?php echo htmlspecialchars($product['price']); ?>" class="form-control" required>
             </div>
             <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" value="<?php echo htmlspecialchars($product['quantity']); ?>" class="form-control" required>
+            </div>
+            <div class="mb-3">
                 <label for="image" class="form-label">Current Image:</label><br>
                 <?php if (!empty($product['image'])): ?>
                     <img src="/php-mvc/uploads/product_image/<?php echo htmlspecialchars($product['image']); ?>" alt="Product Image" class="rounded"  style="width: 100px; height: auto; margin-bottom: 10px;">

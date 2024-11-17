@@ -2,17 +2,17 @@
 require_once 'config/database.php';
 require_once 'helpers/UploadHelper.php';
 
-class Product
+class Category
 {
     private $conn;
-    private $table = 'products';
+    private $table = 'categories';
     private $uploadHelper;
 
     public function __construct()
     {
         $database = new Database();
         $this->conn = $database->getConnection();
-        $this->uploadHelper = new UploadHelper('/../uploads/product_image/');
+        $this->uploadHelper = new UploadHelper('/../uploads/category_image/');
     }
 
     public function getAll()
@@ -32,15 +32,13 @@ class Product
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($name, $price, $quantity)
+    public function create($name)
     {
         try {
             $imageName = $this->uploadHelper->upload($_FILES['image']);
-            $query = "INSERT INTO " . $this->table . " (name, price, quantity, image) VALUES (:name, :price, :quantity, :image)";
+            $query = "INSERT INTO " . $this->table . " (name, image) VALUES (:name, :image)";
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':price', $price);
-            $stmt->bindParam(':quantity', $quantity);
             $stmt->bindParam(':image', $imageName);
             return $stmt->execute();
         } catch (Exception $e) {
@@ -49,14 +47,12 @@ class Product
         }
     }
 
-    public function update($id, $name, $price, $quantity)
+    public function update($id, $name)
     {
-        $query = "UPDATE " . $this->table . " SET name = :name, price = :price, quantity = :quantity";
+        $query = "UPDATE " . $this->table . " SET name = :name";
         $params = [
             ':id' => $id,
             ':name' => $name,
-            ':price' => $price,
-            ':quantity' => $quantity
         ];
 
         if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -90,9 +86,9 @@ class Product
 
     private function deleteImageFile($id)
     {
-        $product = $this->getById($id);
-        if ($product && !empty($product['image']) && file_exists(__DIR__ . '/../uploads/product_image/' . $product['image'])) {
-            $this->uploadHelper->delete($product['image']);
+        $category = $this->getById($id);
+        if ($category && !empty($category['image']) && file_exists(__DIR__ . '/../uploads/category_image/' . $category['image'])) {
+            $this->uploadHelper->delete($category['image']);
         }
     }
 }

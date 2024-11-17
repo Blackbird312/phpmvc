@@ -4,10 +4,11 @@ class UploadHelper
 {
     private $allowedExtensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
     private $uploadDir;
+    private $folderName;
 
-    public function __construct($uploadDir = __DIR__ . '/../uploads/product_image/')
+    public function __construct($folderName, $uploadDir = __DIR__)
     {
-        $this->uploadDir = $uploadDir;
+        $this->uploadDir = rtrim($uploadDir) . $folderName ;
 
         if (!is_dir($this->uploadDir)) {
             mkdir($this->uploadDir, 0777, true);

@@ -22,8 +22,9 @@ This project demonstrates the implementation of a **mini product management appl
 ## Features
 
 1. **Product Management**: Create, read, update, and delete (CRUD) operations for products.
-2. **No Framework**: The application demonstrates MVC principles without relying on external frameworks.
-3. **Data Validation**: Advanced server-side validation for product fields.
+2. **Category Management**: Create, read, update, and delete (CRUD) operations for Categories.
+3. **No Framework**: The application demonstrates MVC principles without relying on external frameworks.
+4. **Data Validation**: Advanced server-side validation for product fields.
 
 ---
 
@@ -72,11 +73,19 @@ Access the product listing or management features.
 php-mvc/
 ├── controllers/
 │   └── ProductController.php
+|   └── CategoryController.php
 ├── models/
 │   └── Product.php
+│   └── Category.php
 ├── views/
 │   └── Product/
-|       └── index.php
+|   |   └── product-list.php
+|   |   └── create.php
+|   |   └── edit.php
+│   └── Category/
+|       └── category-list.php
+|       └── create.php
+|       └── edit.php
 ├── index.php
 ├── config/
 │   └── database.php
@@ -84,6 +93,7 @@ php-mvc/
 |   └── UploadHelpers.php
 ├── uploads/
 |   └── product_image/
+|   └── category_image/
 ├── LICENSE/
 ├── README/
 └── database/
